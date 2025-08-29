@@ -1,0 +1,509 @@
+/* =========================================================
+   Variables (CSS custom properties)
+   ========================================================= */
+:root{
+  --bg-color: #E6E5E1;
+  --shadow-gray: #d3d3d5;
+  --orange: #DA4D1D;
+  --blue: #2b26c3;
+  --img-url: url("https://images.unsplash.com/photo-1525543907410-b2562b6796d6?ixlib=rb-0.3.5&s=9ff8e5e718a6a40cbd0e1471235912f4&auto=format&fit=crop&w=3452&q=80");
+  --img-url2: url("https://images.unsplash.com/photo-1528785198459-ec50485704c7?ixlib=rb-0.3.5&s=3a2fc3039516555bbb2e9cd2967bd321&auto=format&fit=crop&w=1537&q=80");
+}
+
+/* =========================================================
+   PAGE TOURISME (scope principal)
+   ========================================================= */
+.page-tourisme{
+  background-color: var(--bg-color);
+}
+
+
+        /* Désactiver le scroll snap pour cette page */
+        html {
+            scroll-snap-type: none !important;
+        }
+
+        body {
+            scroll-snap-type: none !important;
+        }
+        body h2{
+            font-size: 2.5rem;
+            color: var(--couleur-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+      
+        }
+
+/* =========================================================
+   PODIUM (cartes en haut de page)
+   ========================================================= */
+.page-tourisme .podium{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 24px;
+  isolation: isolate; /* pile de rendu locale */
+}
+
+.page-tourisme .podium .card{
+  position: relative;
+  width: 320px;
+  height: 200px;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  isolation: isolate; /* pour l'onde du bouton */
+}
+
+.page-tourisme .podium .card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.09);
+}
+
+/* déco style “ticket” sur la gauche */
+.page-tourisme .podium .card::before,
+.page-tourisme .podium .card::after{
+  content: "";
+  z-index: 3;
+  position: absolute;
+  left: 32px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  background-color: var(--bg-color);
+}
+.page-tourisme .podium .card::before{ top: -10px; }
+.page-tourisme .podium .card::after{ bottom: -10px; }
+
+.page-tourisme .podium .card ul{
+  z-index: 2;
+  position: absolute;
+  left: 39px;
+  top: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.page-tourisme .podium .card ul li{
+  width: 2px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 6px 0;
+  background-color: var(--bg-color);
+}
+
+/* Titre géant en bas à droite */
+.page-tourisme .podium .card h2{
+  pointer-events: none;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  right: 130px;
+  font: 700 60px/1 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #fff;
+}
+
+/* Flèche (ex: font awesome) */
+.page-tourisme .podium .card .fa-arrow-right{
+  z-index: 4;
+  position: absolute;
+  right: 75px;
+  bottom: 25px;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.page-tourisme .podium .card:hover .fa-arrow-right{
+  transform: translateX(2px);
+}
+
+/* Légende verticale */
+.page-tourisme .podium .card p{
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  color: #333;
+  opacity: .7;
+  font-size: 12px;
+  letter-spacing: 1px;
+  writing-mode: vertical-lr;
+  transition: color .2s ease, opacity .2s ease;
+}
+.page-tourisme .podium .card:hover p{
+  color: #fff;
+  opacity: 1;
+}
+
+/* Image */
+.page-tourisme .podium .card .pic{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-image: var(--img-url);
+  background-size: cover;           /* évite la déformation */
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter .25s ease;
+}
+.page-tourisme .podium .card:hover .pic{
+  filter: grayscale(0);
+}
+
+/* Sociaux (icônes) */
+.page-tourisme .podium .card .social{
+  position: absolute;
+  left: 60px;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 180px;
+  height: 64px;
+  border-radius: 80px;
+  z-index: 4;
+}
+
+/* Icônes – scopées au composant (pas de i global !) */
+.page-tourisme .podium .card i{
+  opacity: 0;
+  font-size: 18px;
+  color: #fff;
+  will-change: transform;
+  transform: scale(.1);
+  transition: all .2s ease;
+}
+.page-tourisme .podium .card:hover i{
+  opacity: 1;
+  transform: scale(1);
+}
+.page-tourisme .podium .card .social i:nth-of-type(1){ transition-delay:.4s; }
+.page-tourisme .podium .card .social i:nth-of-type(2){ transition-delay:.3s; }
+.page-tourisme .podium .card .social i:nth-of-type(3){ transition-delay:.2s; }
+.page-tourisme .podium .card .social i:nth-of-type(4){ transition-delay:.1s; }
+
+/* Bouton “onde” */
+.page-tourisme .podium .card button{
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--orange);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  transition: transform .3s ease;
+  mix-blend-mode: normal;     /* + propre que hard-light sur photo */
+  transform-origin: bottom right;
+  z-index: 3;                 /* au-dessus de l'image */
+}
+.page-tourisme .podium .card:hover button{
+  transform: scale(16.5);     /* garde l’effet mais contrôlé */
+}
+
+/* Variante 2 (image + couleur bouton) */
+.page-tourisme .podium .card2 .pic{
+  background-image: var(--img-url2);
+}
+.page-tourisme .podium .card2 button{
+  background-color: var(--blue);
+}
+
+/* Ombres directionnelles via ::after pour éviter les chevauchements */
+/* .page-tourisme .podium .card::after{ */
+  /* déjà utilisé plus haut pour le trou : on crée une 2e couche dédiée */
+/*}*/
+.page-tourisme .podium .card--left::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:-20px -20px 0 0 #FB968B;
+  border-radius:16px; z-index:1;
+}
+.page-tourisme .podium .card--center::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:0 -20px 0 0 #FB968B;
+  border-radius:16px; z-index:1;
+}
+.page-tourisme .podium .card--right::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:20px -20px 0 0 #FB968B;
+  border-radius:16px; z-index:1;
+}
+
+/* =========================================================
+   TICKETS (grille de cartes)
+   ========================================================= */
+.container.tickets{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  height: auto;              /* fluide, pas de 100vh */
+  background-color: var(--bg-color);
+}
+
+.container.tickets .card{
+  position: relative;
+  height: 200px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  isolation: isolate;        /* pour l’onde */
+}
+.container.tickets .card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.09);
+}
+
+/* déco “ticket” */
+.container.tickets .card::before,
+.container.tickets .card::after{
+  content: "";
+  z-index: 3;
+  position: absolute;
+  left: 32px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  background-color: var(--bg-color);
+}
+.container.tickets .card::before{ top: -10px; }
+.container.tickets .card::after{ bottom: -10px; }
+
+.container.tickets .card ul{
+  z-index: 2;
+  position: absolute;
+  left: 39px;
+  top: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.container.tickets .card ul li{
+  width: 2px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 6px 0;
+  background-color: var(--bg-color);
+}
+
+/* Titre / texte vertical */
+.container.tickets .card h2{
+  pointer-events: none;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  right: 130px;
+  font: 700 60px/1 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #fff;
+}
+.container.tickets .card p{
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  color: #333;
+  opacity: .7;
+  font-size: 12px;
+  letter-spacing: 1px;
+  writing-mode: vertical-lr;
+  transition: color .2s ease, opacity .2s ease;
+}
+.container.tickets .card:hover p{
+  color: #fff;
+  opacity: 1;
+}
+
+/* Image */
+.container.tickets .card .pic{
+  z-index: 0;               /* sous le bouton */
+  width: 100%;
+  height: 100%;
+  background-image: var(--img-url);
+  background-size: cover;   /* pas de déformation */
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter .25s ease;
+}
+.container.tickets .card:hover .pic{
+  filter: grayscale(0);
+}
+
+/* Icônes (scopées) */
+.container.tickets .card i{
+  opacity: 0;
+  font-size: 18px;
+  color: #fff;
+  will-change: transform;
+  transform: scale(.1);
+  transition: all .2s ease;
+}
+.container.tickets .card:hover i{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Bouton “onde” */
+.container.tickets .card button{
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--orange);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  transition: transform .3s ease;
+  mix-blend-mode: normal;
+  transform-origin: bottom right;
+  z-index: 1;               /* l’image est à 0, le texte à 3 */
+}
+.container.tickets .card:hover button{
+  transform: scale(16.5);
+}
+
+/* Variante 2 */
+.container.tickets .card2 .pic{
+  background-image: var(--img-url2);
+}
+.container.tickets .card2 button{
+  background-color: var(--blue);
+}
+
+/* =========================================================
+   Divers
+   ========================================================= */
+.dr{
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 100px;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1200px){
+  .container.tickets{
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 900px){
+  .page-tourisme .podium{
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .container.tickets{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+@media (max-width: 560px){
+  .page-tourisme .podium .card,
+  .container.tickets .card{
+    width: 100%;
+    height: 180px;
+  }
+  .container.tickets{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .page-tourisme .podium{
+    padding: 16px;
+    gap: 16px;
+  }
+  .page-tourisme .podium .card h2,
+  .container.tickets .card h2{
+    font-size: 44px;
+    right: 90px;
+  }
+  .page-tourisme .podium .card p,
+  .container.tickets .card p{
+    right: 52px;
+  }
+}
+
+.bloc-territoire{
+  display:flex;
+  flex-direction:row-reverse; /* 👈 image à droite */
+  gap:2rem;
+  max-width:1100px;
+  margin:0 auto;
+  padding:2rem;
+  background:#fff;
+  border-radius:1rem;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+/* Image */
+.bloc-territoire__image{
+  flex:0 0 40ch;
+  max-width:42%;
+  overflow:hidden;
+  border-radius:0.8rem;
+}
+.bloc-territoire__image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Contenu */
+.bloc-territoire__contenu{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.bloc-territoire__header h2{
+  margin:0 0 .25rem 0;
+  font-size:clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  line-height:1.2;
+}
+.bloc-territoire__surtitre{
+  margin:0 0 1rem 0;
+  opacity:.7;
+  font-weight:500;
+}
+.bloc-territoire__points{
+  margin:1rem 0 0 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 800px){
+  .bloc-territoire{
+    flex-direction:column; /* empile sur mobile */
+    padding:1.25rem;
+  }
+  .bloc-territoire__image{
+    max-width:130%;
+    flex:0 0 auto;
+    height:300px;
+    display: none;
+  }
+}
+
+
+.section-randonnees {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.rando-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centre horizontalement */
+  gap: 2rem;
+}
