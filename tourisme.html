@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tourisme à Cilaos, La Réunion">
+    <title>Tourisme - Cilaos</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS organisé -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script>
+  window.tailwind = {
+    config: {
+      prefix: 'tw-',
+      corePlugins: { preflight: false }
+    }
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+       
+
+        .card-container {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 9 / 15.5;
+            max-height: 90vh;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow:
+                0 0 0 2px rgba(255, 214, 102, 0.4),
+                0 0 25px 8px rgba(255, 214, 102, 0.15);
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.4s ease-out,
+                        background-size 1.5s ease-out;
+            cursor: grab;
+            will-change: transform, box-shadow, background-size;
+        }
+
+        .card-container:hover {
+            box-shadow:
+                0 0 0 3px rgba(255, 214, 102, 0.6),
+                0 0 35px 12px rgba(255, 214, 102, 0.25);
+        }
+
+        .inner-border-overlay {
+            position: absolute;
+            inset: 14px;
+            border-radius: 1.375rem;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow:
+                inset 0.5px 0.5px 1.5px rgba(255, 235, 180, 0.6),
+                inset -1px -1px 1px rgba(160, 110, 0, 0.5),
+                inset 3px 3px 6px rgba(0, 0, 0, 0.25);
+            transform: translateZ(30px);
+            will-change: transform;
+            border: 1px solid rgba(255, 214, 102, 0.1);
+        }
+
+        .content-area {
+            position: absolute;
+            inset: 14px;
+            border-radius: 1.375rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 5;
+            transform: translateZ(60px);
+            will-change: transform;
+        }
+
+        .elevation-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(250, 204, 21, 0.85);
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            color: #422006;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateZ(70px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 25;
+            will-change: transform;
+        }
+
+        .elevation-badge svg {
+            width: 1em;
+            height: 1em;
+        }
+
+
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 75%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.65) 50%, transparent 100%);
+            pointer-events: none;
+            z-index: 15;
+            transform: translateZ(5px);
+            will-change: transform;
+        }
+
+        .text-block {
+            position: relative;
+            z-index: 20;
+            color: #f8fafc;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            transform: translateZ(25px);
+            will-change: transform;
+        }
+
+        .text-block h1 {
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .text-block p {
+            color: #cbd5e1;
+        }
+
+        .mountain-icon {
+            width: 1.5em;
+            height: 1.5em;
+            fill: currentColor;
+            opacity: 0.8;
+            vertical-align: middle;
+            margin-bottom: -0.1em;
+        }
+
+        .tour-button {
+            position: relative;
+            z-index: 20;
+            background: linear-gradient(145deg, #fde047, #facc15);
+            color: #422006;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 9999px;
+            text-align: center;
+            width: auto;
+            min-width: 190px;
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow:
+                inset 2px 2px 4px rgba(160, 110, 0, 0.6),
+                inset -2px -2px 4px rgba(255, 245, 200, 0.5),
+                0 1px 2px rgba(0,0,0,0.1);
+            transform: translateZ(40px);
+            will-change: transform, box-shadow, background;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            letter-spacing: 0.025em;
+            margin-top: 1rem;
+        }
+
+        .tour-button:hover {
+            background: linear-gradient(145deg, #feec80, #fde047);
+            box-shadow:
+                inset 2px 2px 5px rgba(160, 110, 0, 0.5),
+                inset -2px -2px 5px rgba(255, 245, 200, 0.6),
+                0 2px 4px rgba(0,0,0,0.15);
+            transform: translateZ(40px) translateY(-2px);
+            color: #3f2810;
+        }
+
+        .tour-button:active {
+            background: linear-gradient(145deg, #facc15, #eab308);
+            box-shadow:
+                inset -2px -2px 4px rgba(160, 110, 0, 0.6),
+                inset 2px 2px 4px rgba(255, 245, 200, 0.5),
+                0 0 0 rgba(0,0,0,0);
+            transform: translateZ(40px) translateY(0px);
+        }
+    </style>
+
+
+    <style>
+        /* Styles spécifiques corrigés pour la page tourisme */
+        .page-tourisme {
+            background: var(--couleur-fond);
+        }
+        
+        /* Section Hero Video */
+        .section-tourisme-video {
+            position: relative;
+            height: 40vh;
+            overflow: hidden;
+            margin-top: var(--hauteur-navbar);
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Section Randonnées avec Podium */
+        .section-randonnees {
+            min-height: 100vh;
+            background: var(--couleur-surface);
+            padding: 4rem 2rem;
+        }
+        
+        .randonnees-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .randonnees-header h2 {
+            font-size: 2.5rem;
+            color: var(--couleur-accent);
+            margin-bottom: 1rem;
+        }
+        
+        /* Section Activités */
+        .section-activites {
+            padding: 4rem 2rem;
+            background: white;
+        }
+        
+        .activites-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .activites-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .activites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .activite-card {
+            background: var(--couleur-surface);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .activite-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .activite-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Section Agenda Améliorée */
+        .section-agenda {
+            background: linear-gradient(135deg, #E6E5E1 0%, #D3D3D5 100%);
+            padding: 4rem 2rem;
+            min-height: 100vh;
+        }
+        
+        .agenda-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .agenda-info {
+            padding: 2rem;
+        }
+        
+        .agenda-info h2 {
+            font-size: 2.5rem;
+            color: var(--couleur-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .agenda-info p {
+            color: var(--couleur-texte);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Container tickets amélioré */
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        /* Card ticket style amélioré */
+        .ticket-card {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background-color: #fff;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Pastilles tickets */
+        .ticket-card:before,
+        .ticket-card:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #E6E5E1;
+            border-radius: 50%;
+            z-index: 99;
+        }
+        
+        .ticket-card:before {
+            top: -10px;
+            left: 40px;
+        }
+        
+        .ticket-card:after {
+            bottom: -10px;
+            left: 40px;
+        }
+        
+        /* Perforation */
+        .ticket-card .perforation {
+            position: absolute;
+            left: 47px;
+            top: 20px;
+            height: calc(100% - 40px);
+            width: 2px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #E6E5E1 0px,
+                #E6E5E1 3px,
+                transparent 3px,
+                transparent 8px
+            );
+            z-index: 98;
+        }
+        
+        /* Image de fond */
+        .ticket-image {
+            position: absolute;
+            top: 0;
+            left: 60px;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .ticket-card:hover .ticket-image {
+            filter: grayscale(0);
+        }
+        
+        /* Contenu du ticket */
+        .ticket-content {
+            position: absolute;
+            bottom: 0;
+            left: 60px;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ticket-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ticket-description {
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-card:hover .ticket-description {
+            opacity: 0.9;
+            transform: translateY(0);
+        }
+        
+        /* Bouton CTA */
+        .ticket-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--couleur-accent);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .ticket-btn:hover {
+            transform: scale(1.1);
+            background: var(--couleur-hibiscus);
+        }
+        
+        /* Section Territoire */
+        .section-territoire {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .agenda-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .tickets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .randonnees-header h2,
+            .agenda-info h2 {
+                font-size: 1.8rem;
+            }
+            
+            .podium {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .podium .card {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="page-tourisme">
+
+    <!-- HEADER : Navigation principale -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./assets/images/cilaos_logo_transparent.png" alt="logo" width="130" height="75">
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="./index.html">À découvrir</a></li>
+                <li><a href="./sejour.html">Séjours</a></li>
+                <li><a href="#tourisme">Tourisme</a></li>
+                <li><a href="./pratique.html">Info pratiques</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+            <a href="#" class="btn btn-pro">PRO</a>
+        </nav>
+    </header>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginOverlay" aria-hidden="true"></div>
+    <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" aria-hidden="true">
+        <div class="login-card" role="document">
+            <button class="close-x" id="loginClose" aria-label="Fermer">×</button>
+            <div class="login-header">
+                <h3 class="login-title" id="loginTitle">Espace Pro</h3>
+                <p class="login-sub">Connectez-vous pour accéder à l'espace professionnel.</p>
+                <div class="hr"></div>
+            </div>
+            <form class="login-body" id="loginForm" onsubmit="return false;">
+                <div class="form-row">
+                    <label class="label" for="email">Adresse e-mail</label>
+                    <input class="input" type="email" id="email" name="email" placeholder="prenom.nom@email.com" required>
+                </div>
+                <div class="form-row">
+                    <label class="label" for="password">Mot de passe</label>
+                    <input class="input" type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="row-split">
+                    <label class="checkbox"><input type="checkbox" id="remember"> Se souvenir de moi</label>
+                    <a class="link" href="#" id="forgotLink">Mot de passe oublié ?</a>
+                </div>
+                <button class="btn-primary" id="submitLogin">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section Hero avec vidéo -->
+    <section class="section-tourisme-video" id="accueil">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+            <source src="./assets/videos/lever.webm" type="video/webm">
+        </video>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Tourisme à Cilaos</h1>
+                <p>Découvrez les merveilles du cirque</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Randonnées avec Podium -->
+  
+
+<section class="section-randonnees">
+      <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <h2 class="randonnees-header">Randonnées emblématiques</h2>
+  <div class="rando-grid">
+    
+
+    <div class="card-container"
+         style="background-image: url('./assets/images/piton.jpg');"
+         data-tilt data-tilt-max="10" data-tilt-speed="500" data-tilt-perspective="1800" data-tilt-glare data-tilt-max-glare="0.1" data-tilt-scale="1.03" data-tilt-reset="true">
+
+        <div class="inner-border-overlay" data-tilt-transform-element></div>
+
+        <div class="content-area p-4 sm:p-5 lg:p-7" data-tilt-transform-element>
+            <div class="gradient-overlay"></div>
+
+            <div class="elevation-badge" data-tilt-transform-element>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M12 2L6.5 12h11L12 2zm5.5 11l-5.5 9-5.5-9h11z"/>
+                 </svg>
+                3,071 m
+            </div>
+
+             <div class="text-block" data-tilt-transform-element>
+                <h1 class=" text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
+                    Piton des Neiges
+                </h1>
+                <p class="text-sm sm:text-base lg:text-lg font-light">
+                    Cilaos, Réunion
+                </p>
+            </div>
+
+            <button class="tour-button" data-tilt-transform-element>
+                <a href="https://www.reunion.fr/decouvrez/piton-des-neiges-l-ame-de-l-ile-de-la-reunion/" target="_blank" rel="noopener noreferrer">Découvrir</a>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <div class="card-container"
+         style="background-image: url('./assets/images/col.webp');"
+         data-tilt data-tilt-max="10" data-tilt-speed="500" data-tilt-perspective="1800" data-tilt-glare data-tilt-max-glare="0.1" data-tilt-scale="1.03" data-tilt-reset="true">
+
+        <div class="inner-border-overlay" data-tilt-transform-element></div>
+
+        <div class="content-area p-4 sm:p-5 lg:p-7" data-tilt-transform-element>
+            <div class="gradient-overlay"></div>
+
+            <div class="elevation-badge" data-tilt-transform-element>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M12 2L6.5 12h11L12 2zm5.5 11l-5.5 9-5.5-9h11z"/>
+                 </svg>
+                2,082 m
+            </div>
+
+             <div class="text-block" data-tilt-transform-element>
+                <h1 class=" text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
+                    Col du Taïbit
+                </h1>
+                <p class="text-sm sm:text-base lg:text-lg font-light">
+                    Cilaos à Mafate, Réunion 
+                </p>
+            </div>
+
+            <button class="tour-button" data-tilt-transform-element>
+                <a href="https://www.reunion.fr/offres/col-du-taibit-cilaos-fr-586323/" target="_blank" rel="noopener noreferrer">Découvrir</a>
+            </button>
+        </div>
+    </div>
+    <div class="card-container"
+         style="background-image: url('./assets/images/roche.jpg');"
+         data-tilt data-tilt-max="10" data-tilt-speed="500" data-tilt-perspective="1800" data-tilt-glare data-tilt-max-glare="0.1" data-tilt-scale="1.03" data-tilt-reset="true">
+
+        <div class="inner-border-overlay" data-tilt-transform-element></div>
+
+        <div class="content-area p-4 sm:p-5 lg:p-7" data-tilt-transform-element>
+            <div class="gradient-overlay"></div>
+
+            <div class="elevation-badge" data-tilt-transform-element>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M12 2L6.5 12h11L12 2zm5.5 11l-5.5 9-5.5-9h11z"/>
+                 </svg>
+                1,800 m
+            </div>
+
+             <div class="text-block" data-tilt-transform-element>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
+                    Roche Merveilleuse
+                </h1>
+                <p class="text-sm sm:text-base lg:text-lg font-light">
+                    Cilaos, Réunion
+                </p>
+            </div>
+
+            
+                    
+            <button class="tour-button" data-tilt-transform-element>
+                <a href="https://www.reunion.fr/offres/boucle-de-la-roche-merveilleuse-cilaos-fr-3891681/" target="_blank" rel="noopener noreferrer">Découvrir</a>
+            </button>
+        </div>
+    </div>
+<!-- Vanilla Tilt -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script>
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {});
+</script>
+
+
+
+  </div>
+</section>
+
+
+
+    
+    <!-- Section Activités -->
+    <section class="section-activites" id="activites">
+        <div class="activites-container">
+            <div class="activites-header">
+                <h2>Activités à Cilaos</h2>
+                <p>Au-delà des randonnées, découvrez nos activités uniques</p>
+            </div>
+            
+            <div class="activites-grid">
+                <div class="activite-card">
+                    <div class="activite-icon">🧗</div>
+                    <h3>Escalade</h3>
+                    <p>Sites d'escalade pour tous niveaux avec vue sur le cirque</p>
+                </div>
+                
+                <div class="activite-card">
+                    <div class="activite-icon">🚴</div>
+                    <h3>VTT</h3>
+                    <p>Parcours de descente et sentiers techniques en montagne</p>
+                </div>
+                
+                <div class="activite-card">
+                    <div class="activite-icon">🏊</div>
+                    <h3>Canyoning</h3>
+                    <p>Descente de rivières et cascades dans un cadre préservé</p>
+                </div>
+                
+                <div class="activite-card">
+                    <div class="activite-icon">🪂</div>
+                    <h3>Parapente</h3>
+                    <p>Survol du cirque en tandem avec des professionnels</p>
+                </div>
+                
+                <div class="activite-card">
+                    <div class="activite-icon">💆</div>
+                    <h3>Thermes</h3>
+                    <p>Détente et bien-être aux eaux thermales de Cilaos</p>
+                </div>
+                
+                <div class="activite-card">
+                    <div class="activite-icon">🍷</div>
+                    <h3>Œnotourisme</h3>
+                    <p>Visite du chai et dégustation du vin de Cilaos</p>
+                </div>
+             <div class="activite-card">
+                    <div class="activite-icon">🌲</div>
+                    <h3>Accrobranche</h3>
+                    <p>Aventure en hauteur entre les arbres, tyroliennes et ponts suspendus</p>
+                </div>
+
+                <div class="activite-card">
+                    <div class="activite-icon">🚤</div>
+                    <h3>Pédalo</h3>
+                    <p>Balade tranquille sur le lac au coeur du cirque</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Agenda Améliorée -->
+    <section class="section-agenda" id="agenda">
+        <div class="agenda-container">
+            <!-- Partie gauche avec titre et description -->
+            <div class="agenda-info">
+                <h2>Agenda</h2>
+                <p>Cilaos vibre toute l'année au rythme des événements culturels et festifs. Des festivals de musique aux compétitions sportives, en passant par les marchés artisanaux et les célébrations traditionnelles, le cirque offre une programmation riche et variée qui ravit habitants et visiteurs.</p>
+                <p style="margin-top: 1rem; font-weight: 600;">Ne manquez aucun événement lors de votre séjour !</p>
+            </div>
+            
+            <!-- Grille de tickets -->
+            <div class="tickets-grid">
+                <!-- Ticket 1 -->
+                <div class="ticket-card">
+                    <div class="perforation"></div>
+                    <div class="ticket-image" style="background-image: url('./assets/images/festival.png');">
+
+                    </div>
+                    <div class="ticket-content">
+                        <div class="ticket-date">15 Janvier 2025</div>
+                        <h3 class="ticket-title">Festival Sakifo</h3>
+                        <p class="ticket-description">Le plus grand festival de musique de l'océan Indien</p>
+                    </div>
+                    <button class="ticket-btn">
+                    <a href="https://www.facebook.com/villedecilaos/">→</a>
+                    </button>
+                </div>
+                
+                <!-- Ticket 2 -->
+                <div class="ticket-card">
+                    <div class="perforation"></div>
+                    <div class="ticket-image" style="background-image: url('./assets/images/trail.png');"></div>
+                    <div class="ticket-content">
+                        <div class="ticket-date">28 Janvier 2025</div>
+                        <h3 class="ticket-title">Trail de Cilaos</h3>
+                        <p class="ticket-description">42km à travers les sentiers mythiques du cirque</p>
+                    </div>
+                    <button class="ticket-btn">
+                    <a href="https://www.facebook.com/villedecilaos/">→</a>
+                    </button>
+                </div>
+                
+                <!-- Ticket 3 -->
+                <div class="ticket-card">
+                    <div class="perforation"></div>
+                    <div class="ticket-image" style="background-image: url('./assets/images/fete.png');"></div>
+                    <div class="ticket-content">
+                        <div class="ticket-date">5 Février 2025</div>
+                        <h3 class="ticket-title">Fête des Lentilles</h3>
+                        <p class="ticket-description">Célébration de notre produit emblématique IGP</p>
+                    </div>
+                    <button class="ticket-btn">
+                    <a href="https://www.facebook.com/villedecilaos/">→</a>
+                    </button>
+                </div>
+                
+                <!-- Ticket 4 -->
+                <div class="ticket-card">
+                    <div class="perforation"></div>
+                    <div class="ticket-image" style="background-image: url('./assets/images/marche.png');"></div>
+                    <div class="ticket-content">
+                        <div class="ticket-date">Tous les dimanches</div>
+                        <h3 class="ticket-title">Marché Forain</h3>
+                        <p class="ticket-description">Produits locaux, artisanat et saveurs créoles</p>
+                    </div>
+                    <button class="ticket-btn">
+                    <a href="https://www.facebook.com/villedecilaos/">→</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Territoire -->
+   <section class="bloc-territoire">
+  <div class="bloc-territoire__image">
+    <iframe src="./assets/images/cool.html" style="width:130%; height:300px; border:none;"></iframe>
+  </div>
+
+  <div class="bloc-territoire__contenu">
+    <header class="bloc-territoire__header">
+      <h2>La richesse du territoire</h2>
+      <p class="bloc-territoire__surtitre">Patrimoine • Nature • Savoirs-faire</p>
+    </header>
+
+    <p>
+      Au cœur de La Réunion, Cilaos dévoile toute la richesse d’un territoire unique. Entre cirque majestueux et patrimoine créole, ses montagnes et sentiers invitent à la découverte d’une nature préservée. Lentilles, vins et broderies reflètent le savoir-faire des producteurs et artisans locaux. Festivals, thermes et grands événements rythment la vie du cirque et en font une destination authentique et inoubliable.
+    </p>
+
+    <ul class="bloc-territoire__points">
+      <li>Patrimoine architectural remarquable</li>
+      <li>Espaces naturels et itinéraires de balade</li>
+      <li>Produits locaux & savoir-faire artisanaux</li>
+    </ul>
+  </div>
+</section>
+
+    
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mairie de Cilaos</h3>
+                <p>66 Rue du Père Boiteau<br>97413 Cilaos, La Réunion</p>
+                <p>📞 +262 262 31 77 39</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Office de Tourisme</h3>
+                <p>2 Rue des Écoles<br>97413 Cilaos, La Réunion</p>
+                <p>📞 +262 262 31 70 30<br>✉️ info@ot-cilaos.re</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Horaires d'ouverture</h3>
+                <p><strong>Office de Tourisme :</strong><br>
+                Lun-Sam : 9h-12h / 13h30-17h<br>
+                Dimanche : 9h-12h</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="X (Twitter)" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4l11.733 16h4.267l-11.733-16zM20 4L8.267 20h-4.267l11.733-16z" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" stroke="#FF1744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#FF1744"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Office de Tourisme de Cilaos - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/tourisme.js"></script>
+
+    <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/data-module.js"></script>
+    <script src="./assets/js/login.js"></script>
+
+</body>
+</html>
